@@ -1,0 +1,24 @@
+{
+    "id": "94F7D1AA",
+    "path": "~/repos/IRTensembleWorkings/Cluster/EX1.R",
+    "project_path": null,
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1622767130573.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "cursorPosition": "84,27",
+        "scrollLine": "64"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1616385177,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1616385177,
+    "read_only": false,
+    "read_only_alternatives": []
+}

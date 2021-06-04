@@ -1,0 +1,25 @@
+{
+    "id": "952CD1B1",
+    "path": "~/repos/outlierensembles/R/max_thres_mean_ensembles.R",
+    "project_path": "R/max_thres_mean_ensembles.R",
+    "type": "r_source",
+    "hash": "442336847",
+    "contents": "",
+    "dirty": false,
+    "created": 1622766942822.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "tempName": "Untitled3",
+        "cursorPosition": "32,0",
+        "scrollLine": "17"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1622767345,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1622767345232,
+    "read_only": false,
+    "read_only_alternatives": []
+}
