@@ -19,6 +19,7 @@ Imports:
     airt,
     EstCRM,
     psych,
-    apcluster,
-    DDoutlier
+    apcluster
 RoxygenNote: 7.1.1
+Suggests: 
+    DDoutlier

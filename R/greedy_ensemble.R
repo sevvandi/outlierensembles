@@ -59,13 +59,13 @@ greedy_ensemble <- function(X, kk=5){
   wts[target==1] <- 1/(2*kk)
   cw <- rep(0, dd)
   for(ll in 1:dd){
-    Z <- cbind(Y[ ,ll], target)
+    Z <- cbind(X[ ,ll], target)
     obj <- psych::cor.wt(Z, w=wts)
     cw[ll] <- obj$r[1,2]
   }
 
   # INITIALIZE ENSEMBLE WITH METHOD THAT HAS THE HIGHEST CORRELATION WITH TARGET
-  ens <- Y[ ,which.max(cw)]
+  ens <- X[ ,which.max(cw)]
   methods <- which.max(cw)
   ens_corr <- max(cw)
   cws <- order(cw)
@@ -74,13 +74,13 @@ greedy_ensemble <- function(X, kk=5){
 
   # TEST IF ENSEMBLE CAN BE IMPROVED BY INCREASING THE CORRELATION WITH THE TARGET VECTOR BY INCLUDING THE NEXT METHOD FROM THE SORTED LIST
   for(jj in 1:length(cws)){
-    ens_pr <- cbind(ens, Y[ ,cws[jj]])
+    ens_pr <- cbind(ens, X[ ,cws[jj]])
     score <- apply(ens_pr, 1, mean)
     Z <- cbind(score, target)
     obj <- psych::cor.wt(Z, w=wts)
     cor_val <- obj$r[1,2]
     if(cor_val > ens_corr){
-      ens <- cbind(ens, Y[ ,cws[jj]])
+      ens <- cbind(ens, X[ ,cws[jj]])
       methods <- c(methods, cws[jj])
     }
   }
@@ -90,6 +90,6 @@ greedy_ensemble <- function(X, kk=5){
   out <- list()
   out$scores <- apply(ens, 1, mean)
   out$methods <- methods
-  out$chosen <- Y[ ,methods]
+  out$chosen <- X[ ,methods]
   return(out)
 }
