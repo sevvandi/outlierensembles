@@ -39,7 +39,6 @@ irt_ensemble <- function(X){
   X <- sweep(X, 2, divs, "/")
 
   modout <- airt::cirtmodel(X, max.item = rep(1,dd), min.item = rep(0, dd))
-  modout$model$param
   obj <- EstCRM::EstCRMperson(X,modout$model$param, min.item = rep(0,dd), max.item = rep(1,dd) )
 
   Z <- obj$thetas[ ,1:2]
