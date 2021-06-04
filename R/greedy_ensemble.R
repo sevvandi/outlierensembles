@@ -1,4 +1,34 @@
-greedy_ensemble <- function(X, kk){
+#' Computes an ensemble score using the greedy algorithm proposed by Schubert et al (2012)
+#'
+#' This function computes an ensemble score using the greedy algorithm in the paper titled Evaluation of Outlier Rankings and Outlier Scores by Schubert et al (2012) <doi:10.1137/1.9781611972825.90>. The greedy ensemble is detailed in  Section 4.3.
+#'
+#' @param X The input data containing the outlier scores in a dataframe, matrix or tibble format. Rows contain observations and columns contain outlier detection methods.
+#' @param kk The number of estimated outliers.
+#'
+#' @return A list with the components:
+#' \item{\code{scores}}{The ensemble scores.}
+#' \item{\code{methods}}{The methods that are chosen for the ensemble. }
+#' \item{\code{chosen}}{The chosen subset of original anomaly scores.}
+#'
+#' @examples
+#' set.seed(123)
+#' X <- data.frame(x1 = rnorm(200), x2 = rnorm(200))
+#' X[199, ] <- c(4, 4)
+#' X[200, ] <- c(-3, 5)
+#' y1 <- DDoutlier::KNN_AGG(X)
+#' y2 <- DDoutlier::LOF(X)
+#' y3 <- DDoutlier::COF(X)
+#' y4 <- DDoutlier::INFLO(X)
+#' y5 <- DDoutlier::KDEOS(X)
+#' y6 <- DDoutlier::LDF(X)
+#' y7 <- DDoutlier::LDOF(X)
+#' Y <- cbind.data.frame(y1, y2, y3, y4, y5, y6, y7)
+#' ens <- greedy_ensemble(Y, kk=5)
+#' ens$scores
+#'
+#' @export greedy_ensemble
+#'
+greedy_ensemble <- function(X, kk=5){
   # CODED FROM On Evaluation of Outlier Rankings and Outlier Scores
   # BY Erich Schubert, Remigius Wojdanowski, Arthur Zimek and Hans-Peter Kriegel
   # SECTION 4.3 GREEDY ENSEMBLE
@@ -58,7 +88,7 @@ greedy_ensemble <- function(X, kk){
 
   # OUTPUT
   out <- list()
-  out$ens_score <- apply(ens, 1, mean)
+  out$scores <- apply(ens, 1, mean)
   out$methods <- methods
   out$chosen <- Y[ ,methods]
   return(out)
