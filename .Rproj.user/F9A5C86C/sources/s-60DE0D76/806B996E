@@ -3,19 +3,22 @@
     "path": "~/repos/outlierensembles/DESCRIPTION",
     "project_path": "DESCRIPTION",
     "type": "dcf",
-    "hash": "1910354997",
+    "hash": "3873642937",
     "contents": "",
     "dirty": false,
     "created": 1622767371569.0,
     "source_on_save": false,
     "relative_order": 6,
-    "properties": {},
+    "properties": {
+        "cursorPosition": "17,0",
+        "scrollLine": "0"
+    },
     "folds": "",
-    "lastKnownWriteTime": 1622766622,
+    "lastKnownWriteTime": 1622769134,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1622766622,
+    "last_content_update": 1622769134375,
     "read_only": false,
     "read_only_alternatives": []
 }
