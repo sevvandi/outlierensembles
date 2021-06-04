@@ -3,12 +3,12 @@
 
 # outlierensembles
 
+<img src='man/figures/logo.png' align="right" height="138" />
+
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/sevvandi/outlierensembles/workflows/R-CMD-check/badge.svg)](https://github.com/sevvandi/outlierensembles/actions)
-<!-- badges: end --> \# outlierensembles
-<img src='man/figures/logo.png' align="right" height="138" /> \[Copied
-to clipboard\]
+<!-- badges: end -->
 
 The goal of outlierensembles is to …
 
