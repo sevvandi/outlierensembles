@@ -19,7 +19,7 @@ ensemble score:
     (2021)
 2.  Greedy ensemble discussed in Schubert et al. (2012)
 3.  Inverse Cluster Weighted Averaging (ICWA) method discussed in Chiang
-    et al. (2017)
+    (2017)
 4.  Using Maximum scores discussed in Aggarwal and Sathe (2015)
 5.  Using a threshold sum discussed in Aggarwal and Sathe (2015)
 6.  Using the mean as the ensemble score
@@ -136,16 +136,16 @@ Algorithms for Outlier Ensembles.” *ACM SIGKDD Explorations Newsletter*
 
 <div id="ref-Chiang2017">
 
-Chiang, Alvin, Esther David, Yuh Jye Lee, Guy Leshem, and Yi Ren Yeh.
-2017. “A study on anomaly detection ensembles.” *Journal of Applied
-Logic* 21: 1–13. <https://doi.org/10.1016/j.jal.2016.12.002>.
+Chiang, Alvin et al. 2017. “A study on anomaly detection ensembles.”
+*Journal of Applied Logic* 21: 1–13.
+<https://doi.org/10.1016/j.jal.2016.12.002>.
 
 </div>
 
 <div id="ref-kandanaarachchiirtensemble">
 
 Kandanaarachchi, Sevvandi. 2021. “Unsupervised Anomaly Detection
-Ensembles Using Item Response Theory.”
+Ensembles Using Item Response Theory.” <https://bit.ly/irtensemble>.
 
 </div>
 
