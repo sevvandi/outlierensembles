@@ -72,6 +72,7 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
+
 <div id="outlierensembles" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#outlierensembles" class="anchor"></a>outlierensembles</h1></div>
@@ -154,7 +155,12 @@
 <span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind.data.frame</a></span><span class="op">(</span><span class="va">faithful</span>, <span class="va">ens6</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Average"</span>
 <span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">eruptions</span>, <span class="va">waiting</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color<span class="op">=</span><span class="va">Average</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="fu">scale_color_gradient</span><span class="op">(</span>low<span class="op">=</span><span class="st">"yellow"</span>, high<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> </code></pre></div>
-<p><img src="reference/figures/README-example6-1.png" width="100%"> # References</p>
+<p><img src="reference/figures/README-example6-1.png" width="100%"></p>
+</div>
+</div>
+<div id="references" class="section level1">
+<h1 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h1>
 <div id="refs" class="references hanging-indent">
 <div id="ref-Aggarwal2015">
 <p>Aggarwal, Charu C., and Saket Sathe. 2015. “Theoretical Foundations and Algorithms for Outlier Ensembles.” <em>ACM SIGKDD Explorations Newsletter</em> 17 (1): 24–47. <a href="https://doi.org/10.1145/2830544.2830549" class="uri">https://doi.org/10.1145/2830544.2830549</a>.</p>
@@ -173,7 +179,7 @@
 </div>
 </div>
 </div>
-</div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

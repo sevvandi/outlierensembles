@@ -107,4 +107,4 @@ colnames(df)[3] <- "Average"
 ggplot(df, aes(eruptions, waiting)) + geom_point(aes(color=Average)) +  scale_color_gradient(low="yellow", high="red") 
 ```
 
-# References
+## References
