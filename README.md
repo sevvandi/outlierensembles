@@ -120,8 +120,9 @@ colnames(df)[3] <- "Average"
 ggplot(df, aes(eruptions, waiting)) + geom_point(aes(color=Average)) +  scale_color_gradient(low="yellow", high="red") 
 ```
 
-<img src="man/figures/README-example6-1.png" width="100%" /> \#
-References
+<img src="man/figures/README-example6-1.png" width="100%" />
+
+# References
 
 <div id="refs" class="references hanging-indent">
 
