@@ -15,7 +15,7 @@ A list with the components:
 \item{\code{model}}{The IRT model. }
 }
 \description{
-This function computes an ensemble score using Item Response Theory (IRT). This was proposed as an ensemble method for anomaly/outlier detection in  ********.
+This function computes an ensemble score using Item Response Theory (IRT). This was proposed as an ensemble method for anomaly/outlier detection in  Kandanaarachchi (2021) <doi:10.13140/RG.2.2.18355.96801>.
 }
 \details{
 For outlier detection, higher ensemble scores indicate higher levels of anomalousness. This ensemble uses IRT's latent trait to uncover  the hidden ground truth, which is used as the ensemble score. It uses the R packages airt and EstCRM to fit the IRT models. It can also be used for other ensembling tasks.
