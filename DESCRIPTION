@@ -22,4 +22,8 @@ Imports:
     apcluster
 RoxygenNote: 7.1.1
 Suggests: 
-    DDoutlier
+    DDoutlier,
+    knitr,
+    rmarkdown,
+    ggplot2
+VignetteBuilder: knitr

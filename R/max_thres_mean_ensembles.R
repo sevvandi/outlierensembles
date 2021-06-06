@@ -114,6 +114,6 @@ average_ensemble <- function(X){
   X <- sweep(X, 2, mins)
   X <- sweep(X, 2, divs, "/")
 
-  Y <- apply(X, 2, mean)
+  Y <- apply(X, 1, mean)
   return(Y)
 }
