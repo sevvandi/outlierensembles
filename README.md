@@ -60,7 +60,7 @@ y7 <- DDoutlier::LDOF(faithfulu)
 Y <- cbind.data.frame(y1, y2, y3, y4, y5, y6, y7)
 ens1 <- irt_ensemble(Y)
 #> Warning in sqrt(diag(solve(Hess))): NaNs produced
-df <- cbind.data.frame(faithful, ens1$scores[ ,2])
+df <- cbind.data.frame(faithful, ens1$scores)
 colnames(df)[3] <- "IRT"
 ggplot(df, aes(eruptions, waiting)) + geom_point(aes(color=IRT))  +  scale_color_gradient(low="yellow", high="red") 
 ```

@@ -45,8 +45,10 @@ irt_ensemble <- function(X){
   Z[ ,2] <- Z[ ,2] - min(Z[ ,2])
   colnames(Z)[2] <- "Ensemble_Score"
 
+  colnames(modout$model$param) <- c("alpha", "beta", "gamma")
+
   out <- list()
-  out$scores <- Z
+  out$scores <- Z[ ,2]
   out$model <- modout$model
 
   return(out)
