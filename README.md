@@ -145,7 +145,8 @@ Chiang, Alvin et al. 2017. “A study on anomaly detection ensembles.”
 <div id="ref-kandanaarachchiirtensemble">
 
 Kandanaarachchi, Sevvandi. 2021. “Unsupervised Anomaly Detection
-Ensembles Using Item Response Theory.” <https://bit.ly/irtensemble>.
+Ensembles Using Item Response Theory.”
+<https://arxiv.org/abs/2106.06243>.
 
 </div>
 
