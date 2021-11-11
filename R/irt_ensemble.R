@@ -37,6 +37,8 @@ irt_ensemble <- function(X){
   X <- as.data.frame(X)
   X <- sweep(X, 2, mins)
   X <- sweep(X, 2, divs, "/")
+  epsilon <- 0.01
+  X <- epsilon + (1- 2*epsilon)*X
 
   modout <- airt::cirtmodel(X, max.item = rep(1,dd), min.item = rep(0, dd))
   obj <- EstCRM::EstCRMperson(X,modout$model$param, min.item = rep(0,dd), max.item = rep(1,dd) )
