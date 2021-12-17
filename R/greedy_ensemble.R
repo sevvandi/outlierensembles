@@ -28,7 +28,7 @@
 #'
 #' @export greedy_ensemble
 #'
-greedy_ensemble <- function(X, kk=5){
+greedy_ensemble <- function(X, kk = 5){
   # CODED FROM On Evaluation of Outlier Rankings and Outlier Scores
   # BY Erich Schubert, Remigius Wojdanowski, Arthur Zimek and Hans-Peter Kriegel
   # SECTION 4.3 GREEDY ENSEMBLE
