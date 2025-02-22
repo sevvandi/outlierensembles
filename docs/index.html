@@ -29,6 +29,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -41,18 +43,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">outlierensembles</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="articles/outlierensembles.html">Get started</a>
 </li>
@@ -72,106 +68,118 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="outlierensembles" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#outlierensembles" class="anchor"></a>outlierensembles</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="outlierensembles">outlierensembles<a class="anchor" aria-label="anchor" href="#outlierensembles"></a>
+</h1></div>
 <p><img src="reference/figures/logo.png" align="right" height="138"></p>
 <!-- badges: start -->
-<p><a href="https://github.com/sevvandi/outlierensembles/actions"><img src="https://github.com/sevvandi/outlierensembles/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a> <!-- badges: end --></p>
+
 <p><strong>outlierensembles</strong> provides a collection of outlier/anomaly detection ensembles. Given the anomaly scores of different anomaly detection methods, the following ensemble techniques can be used to construct an ensemble score:</p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>Item Response Theory based ensemble discussed in Kandanaarachchi
-(2021)</li>
+<ol start="2021" style="list-style-type: decimal"><li>
+</li></ol>
+</li>
 <li>Greedy ensemble discussed in Schubert et al. (2012)</li>
 <li>Inverse Cluster Weighted Averaging (ICWA) method discussed in Chiang
-(2017)</li>
+<ol start="2017" style="list-style-type: decimal"><li>
+</li></ol>
+</li>
 <li>Using Maximum scores discussed in Aggarwal and Sathe (2015)</li>
 <li>Using a threshold sum discussed in Aggarwal and Sathe (2015)</li>
 <li>Using the mean as the ensemble score</li>
 </ol>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of outlierensembles from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the released version of outlierensembles from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"outlierensembles"</span><span class="op">)</span></code></pre></div>
-<p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"outlierensembles"</span><span class="op">)</span></span></code></pre></div>
+<p>And the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"sevvandi/outlierensembles"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"sevvandi/outlierensembles"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
-<p>We use 7 anomaly detection methods from DDoutlier R package as our base methods. You can use any anomaly detection method you want to build the ensemble. First, we construct the IRT ensemble. The colors show the ensemble scores.</p>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
+<p>We use methods from dbscan R package as to find anomalies. You can use any anomaly detection method you want to build the ensemble. First, we construct the IRT ensemble. The colors show the ensemble scores.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">faithfulu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html">scale</a></span><span class="op">(</span><span class="va">faithful</span><span class="op">)</span>
-
-<span class="va">y1</span> <span class="op">&lt;-</span> <span class="fu">DDoutlier</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DDoutlier/man/KNN_AGG.html">KNN_AGG</a></span><span class="op">(</span><span class="va">faithfulu</span><span class="op">)</span>
-<span class="va">y2</span> <span class="op">&lt;-</span> <span class="fu">DDoutlier</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DDoutlier/man/LOF.html">LOF</a></span><span class="op">(</span><span class="va">faithfulu</span><span class="op">)</span>
-<span class="va">y3</span> <span class="op">&lt;-</span> <span class="fu">DDoutlier</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DDoutlier/man/COF.html">COF</a></span><span class="op">(</span><span class="va">faithfulu</span><span class="op">)</span>
-<span class="va">y4</span> <span class="op">&lt;-</span> <span class="fu">DDoutlier</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DDoutlier/man/INFLO.html">INFLO</a></span><span class="op">(</span><span class="va">faithfulu</span><span class="op">)</span>
-<span class="va">y5</span> <span class="op">&lt;-</span> <span class="fu">DDoutlier</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DDoutlier/man/KDEOS.html">KDEOS</a></span><span class="op">(</span><span class="va">faithfulu</span><span class="op">)</span>
-<span class="va">y6</span> <span class="op">&lt;-</span> <span class="fu">DDoutlier</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DDoutlier/man/LDF.html">LDF</a></span><span class="op">(</span><span class="va">faithfulu</span><span class="op">)</span>
-<span class="va">y7</span> <span class="op">&lt;-</span> <span class="fu">DDoutlier</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DDoutlier/man/LDOF.html">LDOF</a></span><span class="op">(</span><span class="va">faithfulu</span><span class="op">)</span>
-<span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind.data.frame</a></span><span class="op">(</span><span class="va">y1</span>, <span class="va">y2</span>, <span class="va">y3</span>, <span class="va">y4</span>, <span class="va">y5</span>, <span class="va">y6</span>, <span class="va">y7</span><span class="op">)</span>
-<span class="va">ens1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/irt_ensemble.html">irt_ensemble</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span>
-<span class="co">#&gt; Warning in sqrt(diag(solve(Hess))): NaNs produced</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind.data.frame</a></span><span class="op">(</span><span class="va">faithful</span>, <span class="va">ens1</span><span class="op">$</span><span class="va">scores</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"IRT"</span>
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">eruptions</span>, <span class="va">waiting</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color<span class="op">=</span><span class="va">IRT</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span>  <span class="fu">scale_color_gradient</span><span class="op">(</span>low<span class="op">=</span><span class="st">"yellow"</span>, high<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span><span class="va">faithfulu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scale.html" class="external-link">scale</a></span><span class="op">(</span><span class="va">faithful</span><span class="op">)</span></span>
+<span><span class="co"># Using different parameters of lof for anomaly detection</span></span>
+<span><span class="va">y1</span> <span class="op">&lt;-</span> <span class="fu">dbscan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/dbscan/man/lof.html" class="external-link">lof</a></span><span class="op">(</span><span class="va">faithfulu</span>, minPts <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">y2</span> <span class="op">&lt;-</span> <span class="fu">dbscan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/dbscan/man/lof.html" class="external-link">lof</a></span><span class="op">(</span><span class="va">faithfulu</span>, minPts <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">y3</span> <span class="op">&lt;-</span> <span class="fu">dbscan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/dbscan/man/lof.html" class="external-link">lof</a></span><span class="op">(</span><span class="va">faithfulu</span>, minPts <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span><span class="va">knnobj</span> <span class="op">&lt;-</span> <span class="fu">dbscan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/dbscan/man/kNN.html" class="external-link">kNN</a></span><span class="op">(</span><span class="va">faithfulu</span>, k <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span><span class="co"># Using different KNN distances as anomaly scores</span></span>
+<span><span class="va">y4</span> <span class="op">&lt;-</span> <span class="va">knnobj</span><span class="op">$</span><span class="va">dist</span><span class="op">[</span> ,<span class="fl">5</span><span class="op">]</span></span>
+<span><span class="va">y5</span> <span class="op">&lt;-</span> <span class="va">knnobj</span><span class="op">$</span><span class="va">dist</span><span class="op">[</span> ,<span class="fl">10</span><span class="op">]</span></span>
+<span><span class="va">y6</span> <span class="op">&lt;-</span> <span class="va">knnobj</span><span class="op">$</span><span class="va">dist</span><span class="op">[</span> ,<span class="fl">20</span><span class="op">]</span></span>
+<span><span class="co"># Dense points are less anomalous. Points in less dense areas are more anomalous. Hence 1 - pointdensity is used.</span></span>
+<span><span class="va">y7</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="fu">dbscan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/dbscan/man/pointdensity.html" class="external-link">pointdensity</a></span><span class="op">(</span><span class="va">faithfulu</span>, eps <span class="op">=</span> <span class="fl">1</span>, type<span class="op">=</span><span class="st">"gaussian"</span><span class="op">)</span></span>
+<span><span class="va">y8</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="fu">dbscan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/dbscan/man/pointdensity.html" class="external-link">pointdensity</a></span><span class="op">(</span><span class="va">faithfulu</span>, eps <span class="op">=</span> <span class="fl">2</span>, type <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span></span>
+<span><span class="va">y9</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="fu">dbscan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/dbscan/man/pointdensity.html" class="external-link">pointdensity</a></span><span class="op">(</span><span class="va">faithfulu</span>, eps <span class="op">=</span> <span class="fl">0.5</span>, type <span class="op">=</span> <span class="st">"gaussian"</span><span class="op">)</span></span>
+<span></span>
+<span></span>
+<span></span>
+<span><span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind.data.frame</a></span><span class="op">(</span><span class="va">y1</span>, <span class="va">y2</span>, <span class="va">y3</span>, <span class="va">y4</span>, <span class="va">y5</span>, <span class="va">y6</span>, <span class="va">y7</span>, <span class="va">y8</span>, <span class="va">y9</span><span class="op">)</span></span>
+<span><span class="va">ens1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/irt_ensemble.html">irt_ensemble</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in sqrt(diag(solve(Hess))): NaNs produced</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind.data.frame</a></span><span class="op">(</span><span class="va">faithful</span>, <span class="va">ens1</span><span class="op">$</span><span class="va">scores</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"IRT"</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">eruptions</span>, <span class="va">waiting</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color<span class="op">=</span><span class="va">IRT</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span>  <span class="fu">scale_color_gradient</span><span class="op">(</span>low<span class="op">=</span><span class="st">"yellow"</span>, high<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="reference/figures/README-example1-1.png" width="100%"></p>
 <p>Then we do the greedy ensemble.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ens2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/greedy_ensemble.html">greedy_ensemble</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind.data.frame</a></span><span class="op">(</span><span class="va">faithful</span>, <span class="va">ens2</span><span class="op">$</span><span class="va">scores</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Greedy"</span>
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">eruptions</span>, <span class="va">waiting</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color<span class="op">=</span><span class="va">Greedy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="fu">scale_color_gradient</span><span class="op">(</span>low<span class="op">=</span><span class="st">"yellow"</span>, high<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span><span class="va">ens2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/greedy_ensemble.html">greedy_ensemble</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind.data.frame</a></span><span class="op">(</span><span class="va">faithful</span>, <span class="va">ens2</span><span class="op">$</span><span class="va">scores</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Greedy"</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">eruptions</span>, <span class="va">waiting</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color<span class="op">=</span><span class="va">Greedy</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="fu">scale_color_gradient</span><span class="op">(</span>low<span class="op">=</span><span class="st">"yellow"</span>, high<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="reference/figures/README-example2-1.png" width="100%"></p>
 <p>We do the ICWA ensemble next.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ens3</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/icwa_ensemble.html">icwa_ensemble</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind.data.frame</a></span><span class="op">(</span><span class="va">faithful</span>, <span class="va">ens3</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"ICWA"</span>
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">eruptions</span>, <span class="va">waiting</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color<span class="op">=</span><span class="va">ICWA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="fu">scale_color_gradient</span><span class="op">(</span>low<span class="op">=</span><span class="st">"yellow"</span>, high<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span><span class="va">ens3</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/icwa_ensemble.html">icwa_ensemble</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind.data.frame</a></span><span class="op">(</span><span class="va">faithful</span>, <span class="va">ens3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"ICWA"</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">eruptions</span>, <span class="va">waiting</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color<span class="op">=</span><span class="va">ICWA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="fu">scale_color_gradient</span><span class="op">(</span>low<span class="op">=</span><span class="st">"yellow"</span>, high<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="reference/figures/README-example3-1.png" width="100%"></p>
 <p>Next, we use the maximum scores to build the ensemble.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ens4</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/max_ensemble.html">max_ensemble</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind.data.frame</a></span><span class="op">(</span><span class="va">faithful</span>, <span class="va">ens4</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Max"</span>
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">eruptions</span>, <span class="va">waiting</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color<span class="op">=</span><span class="va">Max</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="fu">scale_color_gradient</span><span class="op">(</span>low<span class="op">=</span><span class="st">"yellow"</span>, high<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span><span class="va">ens4</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/max_ensemble.html">max_ensemble</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind.data.frame</a></span><span class="op">(</span><span class="va">faithful</span>, <span class="va">ens4</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Max"</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">eruptions</span>, <span class="va">waiting</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color<span class="op">=</span><span class="va">Max</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="fu">scale_color_gradient</span><span class="op">(</span>low<span class="op">=</span><span class="st">"yellow"</span>, high<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="reference/figures/README-example4-1.png" width="100%"></p>
 <p>Then, we use the a threshold sum to construct the ensemble.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ens5</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/threshold_ensemble.html">threshold_ensemble</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind.data.frame</a></span><span class="op">(</span><span class="va">faithful</span>, <span class="va">ens5</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Threshold"</span>
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">eruptions</span>, <span class="va">waiting</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color<span class="op">=</span><span class="va">Threshold</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="fu">scale_color_gradient</span><span class="op">(</span>low<span class="op">=</span><span class="st">"yellow"</span>, high<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span><span class="va">ens5</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/threshold_ensemble.html">threshold_ensemble</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind.data.frame</a></span><span class="op">(</span><span class="va">faithful</span>, <span class="va">ens5</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Threshold"</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">eruptions</span>, <span class="va">waiting</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color<span class="op">=</span><span class="va">Threshold</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="fu">scale_color_gradient</span><span class="op">(</span>low<span class="op">=</span><span class="st">"yellow"</span>, high<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="reference/figures/README-example5-1.png" width="100%"></p>
 <p>Finally, we use the mean values as the ensemble score.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ens6</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/average_ensemble.html">average_ensemble</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind.data.frame</a></span><span class="op">(</span><span class="va">faithful</span>, <span class="va">ens6</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Average"</span>
-<span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">eruptions</span>, <span class="va">waiting</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color<span class="op">=</span><span class="va">Average</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="fu">scale_color_gradient</span><span class="op">(</span>low<span class="op">=</span><span class="st">"yellow"</span>, high<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span><span class="va">ens6</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/average_ensemble.html">average_ensemble</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind.data.frame</a></span><span class="op">(</span><span class="va">faithful</span>, <span class="va">ens6</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Average"</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">df</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">eruptions</span>, <span class="va">waiting</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>color<span class="op">=</span><span class="va">Average</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="fu">scale_color_gradient</span><span class="op">(</span>low<span class="op">=</span><span class="st">"yellow"</span>, high<span class="op">=</span><span class="st">"red"</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="reference/figures/README-example6-1.png" width="100%"></p>
 </div>
-<div id="references" class="section level2">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h2>
-<div id="refs" class="references hanging-indent">
-<div id="ref-Aggarwal2015">
-<p>Aggarwal, Charu C., and Saket Sathe. 2015. “Theoretical Foundations and Algorithms for Outlier Ensembles.” <em>ACM SIGKDD Explorations Newsletter</em> 17 (1): 24–47. <a href="https://doi.org/10.1145/2830544.2830549" class="uri">https://doi.org/10.1145/2830544.2830549</a>.</p>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Aggarwal2015" class="csl-entry">
+Aggarwal, Charu C., and Saket Sathe. 2015. “<span class="nocase">Theoretical Foundations and Algorithms for Outlier Ensembles</span>.” <em>ACM SIGKDD Explorations Newsletter</em> 17 (1): 24–47. <a href="https://doi.org/10.1145/2830544.2830549" class="external-link uri">https://doi.org/10.1145/2830544.2830549</a>.
 </div>
-<div id="ref-Chiang2017">
-<p>Chiang, Alvin et al. 2017. “A study on anomaly detection ensembles.” <em>Journal of Applied Logic</em> 21: 1–13. <a href="https://doi.org/10.1016/j.jal.2016.12.002" class="uri">https://doi.org/10.1016/j.jal.2016.12.002</a>.</p>
+<div id="ref-Chiang2017" class="csl-entry">
+Chiang, Alvin et al. 2017. “<span class="nocase">A study on anomaly detection ensembles</span>.” <em>Journal of Applied Logic</em> 21: 1–13. <a href="https://doi.org/10.1016/j.jal.2016.12.002" class="external-link uri">https://doi.org/10.1016/j.jal.2016.12.002</a>.
 </div>
-<div id="ref-kandanaarachchiirtensemble">
-<p>Kandanaarachchi, Sevvandi. 2021. “Unsupervised Anomaly Detection Ensembles Using Item Response Theory.” <a href="https://arxiv.org/abs/2106.06243" class="uri">https://arxiv.org/abs/2106.06243</a>.</p>
+<div id="ref-kandanaarachchiirtensemble" class="csl-entry">
+Kandanaarachchi, Sevvandi. 2021. “Unsupervised Anomaly Detection Ensembles Using Item Response Theory.” <a href="https://arxiv.org/abs/2106.06243" class="external-link uri">https://arxiv.org/abs/2106.06243</a>.
 </div>
-<div id="ref-Schubert2012">
-<p>Schubert, Erich, Remigius Wojdanowski, Arthur Zimek, and Hans Peter Kriegel. 2012. “On evaluation of outlier rankings and outlier scores.” In <em>Proceedings of the 12th Siam International Conference on Data Mining, Sdm 2012</em>, 1047–58.</p>
+<div id="ref-Schubert2012" class="csl-entry">
+Schubert, Erich, Remigius Wojdanowski, Arthur Zimek, and Hans Peter Kriegel. 2012. “<span class="nocase">On evaluation of outlier rankings and outlier scores</span>.” In <em>Proceedings of the 12th SIAM International Conference on Data Mining, SDM 2012</em>, 1047–58.
 </div>
 </div>
 </div>
@@ -179,17 +187,40 @@
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="license">
-<h2>License</h2>
+    <div class="links">
+<h2 data-toc-skip>Links</h2>
+<ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=outlierensembles" class="external-link">View on CRAN</a></li>
+</ul>
+</div>
+
+<div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
 <li><small>GPL (&gt;= 3)</small></li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li>Sevvandi Kandanaarachchi <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-0337-0395" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html#citation">Citing outlierensembles</a></li>
+</ul>
+</div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Sevvandi Kandanaarachchi <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-0337-0395" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/sevvandi/outlierensembles/actions" class="external-link"><img src="https://github.com/sevvandi/outlierensembles/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
 </div>
 
@@ -198,11 +229,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Sevvandi Kandanaarachchi.</p>
+  <p></p>
+<p>Developed by Sevvandi Kandanaarachchi.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -210,6 +243,8 @@
 
   
 
+
+  
 
   </body>
 </html>

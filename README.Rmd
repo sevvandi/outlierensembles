@@ -48,18 +48,26 @@ And the development version from [GitHub](https://github.com/) with:
 devtools::install_github("sevvandi/outlierensembles")
 ```
 ## Example
-We use 7 anomaly detection methods from DDoutlier R package as our base methods. You can use any anomaly detection method you want to build the ensemble.  First, we construct the IRT ensemble. The colors show the ensemble scores. 
+We use methods from dbscan R package as to find anomalies. You can use any anomaly detection method you want to build the ensemble.  First, we construct the IRT ensemble. The colors show the ensemble scores. 
 ```{r example1}
 faithfulu <- scale(faithful)
+# Using different parameters of lof for anomaly detection
+y1 <- dbscan::lof(faithfulu, minPts = 5)
+y2 <- dbscan::lof(faithfulu, minPts = 10)
+y3 <- dbscan::lof(faithfulu, minPts = 20)
+knnobj <- dbscan::kNN(faithfulu, k = 20)
+# Using different KNN distances as anomaly scores
+y4 <- knnobj$dist[ ,5]
+y5 <- knnobj$dist[ ,10]
+y6 <- knnobj$dist[ ,20]
+# Dense points are less anomalous. Points in less dense areas are more anomalous. Hence 1 - pointdensity is used.
+y7 <- 1 - dbscan::pointdensity(faithfulu, eps = 1, type="gaussian")
+y8 <- 1 - dbscan::pointdensity(faithfulu, eps = 2, type = "gaussian")
+y9 <- 1 - dbscan::pointdensity(faithfulu, eps = 0.5, type = "gaussian")
 
-y1 <- DDoutlier::KNN_AGG(faithfulu)
-y2 <- DDoutlier::LOF(faithfulu)
-y3 <- DDoutlier::COF(faithfulu)
-y4 <- DDoutlier::INFLO(faithfulu)
-y5 <- DDoutlier::KDEOS(faithfulu)
-y6 <- DDoutlier::LDF(faithfulu)
-y7 <- DDoutlier::LDOF(faithfulu)
-Y <- cbind.data.frame(y1, y2, y3, y4, y5, y6, y7)
+
+
+Y <- cbind.data.frame(y1, y2, y3, y4, y5, y6, y7, y8, y9)
 ens1 <- irt_ensemble(Y)
 df <- cbind.data.frame(faithful, ens1$scores)
 colnames(df)[3] <- "IRT"

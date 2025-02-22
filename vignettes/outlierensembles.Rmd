@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(outlierensembles)
 library(ggplot2)
-library(outlierensembles)
+library(dbscan)
 ```
 
 Let us add some anomalies inside an ring. 
@@ -45,17 +45,24 @@ X[801:803, 1:2] <- z
 ggplot(X, aes(x1, x2)) + geom_point()
 ```
 
-Let us find outliers using DDoutlier R package and use the IRT ensemble to construct an ensemble score.
+Let us find outliers using the R package dbscan and use the IRT ensemble to construct an ensemble score.
 
 ```{r outliers1}
-y1 <- DDoutlier::KNN_AGG(X,  k_min=10, k_max=20)
-y2 <- DDoutlier::LOF(X, k=10)
-y3 <- DDoutlier::COF(X, k=10)
-y4 <- DDoutlier::INFLO(X, k=10)
-y5 <- DDoutlier::KDEOS(X, k_min=10, k_max=20)
-y6 <- DDoutlier::LDF(X, k=10)
-y7 <- DDoutlier::LDOF(X, k=10)
-Y <- cbind.data.frame(y1, y2, y3, y4, y5, y6, y7)
+# Using different parameters of lof for anomaly detection
+y1 <- dbscan::lof(X, minPts = 5)
+y2 <- dbscan::lof(X, minPts = 10)
+y3 <- dbscan::lof(X, minPts = 20)
+knnobj <- dbscan::kNN(X, k = 20)
+# Using different KNN distances as anomaly scores
+y4 <- knnobj$dist[ ,5]
+y5 <- knnobj$dist[ ,10]
+y6 <- knnobj$dist[ ,20]
+# Dense points are less anomalous. Points in less dense areas are more anomalous. Hence 1 - pointdensity is used.
+y7 <- 1 - dbscan::pointdensity(X, eps = 1, type="gaussian")
+y8 <- 1 - dbscan::pointdensity(X, eps = 2, type = "gaussian")
+y9 <- 1 - dbscan::pointdensity(X, eps = 0.5, type = "gaussian")
+
+Y <- cbind.data.frame(y1, y2, y3, y4, y5, y6, y7, y8, y9)
 ens1 <- irt_ensemble(Y)
 df <- cbind.data.frame(X, ens1$scores)
 colnames(df)[3] <- "IRT"

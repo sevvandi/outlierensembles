@@ -16,7 +16,7 @@ methods, the following ensemble techniques can be used to construct an
 ensemble score:
 
 1.  Item Response Theory based ensemble discussed in Kandanaarachchi
-    (2021)
+    (2022)
 2.  Greedy ensemble discussed in Schubert et al. (2012)
 3.  Inverse Cluster Weighted Averaging (ICWA) method discussed in Chiang
     (2017)
@@ -42,22 +42,29 @@ devtools::install_github("sevvandi/outlierensembles")
 
 ## Example
 
-We use 7 anomaly detection methods from DDoutlier R package as our base
-methods. You can use any anomaly detection method you want to build the
-ensemble. First, we construct the IRT ensemble. The colors show the
-ensemble scores.
+We use methods from dbscan R package as to find anomalies. You can use
+any anomaly detection method you want to build the ensemble. First, we
+construct the IRT ensemble. The colors show the ensemble scores.
 
 ``` r
 faithfulu <- scale(faithful)
+# Using different parameters of lof for anomaly detection
+y1 <- dbscan::lof(faithfulu, minPts = 5)
+y2 <- dbscan::lof(faithfulu, minPts = 10)
+y3 <- dbscan::lof(faithfulu, minPts = 20)
+knnobj <- dbscan::kNN(faithfulu, k = 20)
+# Using different KNN distances as anomaly scores
+y4 <- knnobj$dist[ ,5]
+y5 <- knnobj$dist[ ,10]
+y6 <- knnobj$dist[ ,20]
+# Dense points are less anomalous. Points in less dense areas are more anomalous. Hence 1 - pointdensity is used.
+y7 <- 1 - dbscan::pointdensity(faithfulu, eps = 1, type="gaussian")
+y8 <- 1 - dbscan::pointdensity(faithfulu, eps = 2, type = "gaussian")
+y9 <- 1 - dbscan::pointdensity(faithfulu, eps = 0.5, type = "gaussian")
 
-y1 <- DDoutlier::KNN_AGG(faithfulu)
-y2 <- DDoutlier::LOF(faithfulu)
-y3 <- DDoutlier::COF(faithfulu)
-y4 <- DDoutlier::INFLO(faithfulu)
-y5 <- DDoutlier::KDEOS(faithfulu)
-y6 <- DDoutlier::LDF(faithfulu)
-y7 <- DDoutlier::LDOF(faithfulu)
-Y <- cbind.data.frame(y1, y2, y3, y4, y5, y6, y7)
+
+
+Y <- cbind.data.frame(y1, y2, y3, y4, y5, y6, y7, y8, y9)
 ens1 <- irt_ensemble(Y)
 #> Warning in sqrt(diag(solve(Hess))): NaNs produced
 df <- cbind.data.frame(faithful, ens1$scores)
@@ -124,38 +131,39 @@ ggplot(df, aes(eruptions, waiting)) + geom_point(aes(color=Average)) +  scale_co
 
 ## References
 
-<div id="refs" class="references hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent">
 
-<div id="ref-Aggarwal2015">
+<div id="ref-Aggarwal2015" class="csl-entry">
 
-Aggarwal, Charu C., and Saket Sathe. 2015. “Theoretical Foundations and
-Algorithms for Outlier Ensembles.” *ACM SIGKDD Explorations Newsletter*
-17 (1): 24–47. <https://doi.org/10.1145/2830544.2830549>.
+Aggarwal, Charu C., and Saket Sathe. 2015.
+“<span class="nocase">Theoretical Foundations and Algorithms for Outlier
+Ensembles</span>.” *ACM SIGKDD Explorations Newsletter* 17 (1): 24–47.
+<https://doi.org/10.1145/2830544.2830549>.
 
 </div>
 
-<div id="ref-Chiang2017">
+<div id="ref-Chiang2017" class="csl-entry">
 
-Chiang, Alvin et al. 2017. “A study on anomaly detection ensembles.”
-*Journal of Applied Logic* 21: 1–13.
+Chiang, Alvin et al. 2017. “<span class="nocase">A study on anomaly
+detection ensembles</span>.” *Journal of Applied Logic* 21: 1–13.
 <https://doi.org/10.1016/j.jal.2016.12.002>.
 
 </div>
 
-<div id="ref-kandanaarachchiirtensemble">
+<div id="ref-kandanaarachchiirtensemble" class="csl-entry">
 
-Kandanaarachchi, Sevvandi. 2021. “Unsupervised Anomaly Detection
-Ensembles Using Item Response Theory.”
-<https://arxiv.org/abs/2106.06243>.
+Kandanaarachchi, Sevvandi. 2022. “Unsupervised Anomaly Detection
+Ensembles Using Item Response Theory.” *Information Sciences* 587:
+142–63. https://doi.org/<https://doi.org/10.1016/j.ins.2021.12.042>.
 
 </div>
 
-<div id="ref-Schubert2012">
+<div id="ref-Schubert2012" class="csl-entry">
 
 Schubert, Erich, Remigius Wojdanowski, Arthur Zimek, and Hans Peter
-Kriegel. 2012. “On evaluation of outlier rankings and outlier scores.”
-In *Proceedings of the 12th Siam International Conference on Data
-Mining, Sdm 2012*, 1047–58.
+Kriegel. 2012. “<span class="nocase">On evaluation of outlier rankings
+and outlier scores</span>.” In *Proceedings of the 12th SIAM
+International Conference on Data Mining, SDM 2012*, 1047–58.
 
 </div>
 

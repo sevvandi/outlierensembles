@@ -15,14 +15,17 @@
 #' X <- data.frame(x1 = rnorm(200), x2 = rnorm(200))
 #' X[199, ] <- c(4, 4)
 #' X[200, ] <- c(-3, 5)
-#' y1 <- DDoutlier::KNN_AGG(X)
-#' y2 <- DDoutlier::LOF(X)
-#' y3 <- DDoutlier::COF(X)
-#' y4 <- DDoutlier::INFLO(X)
-#' y5 <- DDoutlier::KDEOS(X)
-#' y6 <- DDoutlier::LDF(X)
-#' y7 <- DDoutlier::LDOF(X)
-#' Y <- cbind.data.frame(y1, y2, y3, y4, y5, y6, y7)
+#' # Using different parameters of lof for anomaly detection
+#' y1 <- dbscan::lof(X, minPts = 10)
+#' y2 <- dbscan::lof(X, minPts = 20)
+#' knnobj <- dbscan::kNN(X, k = 20)
+#' # Using different KNN distances as anomaly scores
+#' y3 <- knnobj$dist[ ,10]
+#' y4 <- knnobj$dist[ ,20]
+#' # Dense points are less anomalous. Hence 1 - pointdensity is used.
+#' y5 <- 1 - dbscan::pointdensity(X, eps = 0.8, type = "gaussian")
+#' y6 <- 1 - dbscan::pointdensity(X, eps = 0.5, type = "gaussian")
+#' Y <- cbind.data.frame(y1, y2, y3, y4, y5, y6)
 #' ens <- greedy_ensemble(Y, kk=5)
 #' ens$scores
 #'
