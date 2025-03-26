@@ -6,8 +6,7 @@
 <img src='man/figures/logo.png' align="right" height="138" />
 
 <!-- badges: start -->
-
-[![R-CMD-check](https://github.com/sevvandi/outlierensembles/workflows/R-CMD-check/badge.svg)](https://github.com/sevvandi/outlierensembles/actions)
+[![R-CMD-check](https://github.com/sevvandi/outlierensembles/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/sevvandi/outlierensembles/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 **outlierensembles** provides a collection of outlier/anomaly detection
