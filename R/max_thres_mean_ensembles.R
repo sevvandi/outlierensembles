@@ -8,6 +8,7 @@
 #'
 #' @examples
 #' set.seed(123)
+#' if (requireNamespace("dbscan", quietly = TRUE)) {
 #' X <- data.frame(x1 = rnorm(200), x2 = rnorm(200))
 #' X[199, ] <- c(4, 4)
 #' X[200, ] <- c(-3, 5)
@@ -24,6 +25,7 @@
 #' Y <- cbind.data.frame(y1, y2, y3, y4, y5, y6)
 #' ens <- max_ensemble(Y)
 #' ens
+#'}
 #'
 #' @export max_ensemble
 max_ensemble <- function(X){
@@ -50,6 +52,7 @@ max_ensemble <- function(X){
 #'
 #' @examples
 #' set.seed(123)
+#' if (requireNamespace("dbscan", quietly = TRUE)) {
 #' X <- data.frame(x1 = rnorm(200), x2 = rnorm(200))
 #' X[199, ] <- c(4, 4)
 #' X[200, ] <- c(-3, 5)
@@ -66,6 +69,7 @@ max_ensemble <- function(X){
 #' Y <- cbind.data.frame(y1, y2, y3, y4, y5, y6)
 #' ens <- threshold_ensemble(Y)
 #' ens
+#' }
 #'
 #' @export threshold_ensemble
 threshold_ensemble <- function(X){
@@ -96,6 +100,7 @@ threshold_ensemble <- function(X){
 #'
 #' @examples
 #' set.seed(123)
+#' if (requireNamespace("dbscan", quietly = TRUE)) {
 #' X <- data.frame(x1 = rnorm(200), x2 = rnorm(200))
 #' X[199, ] <- c(4, 4)
 #' X[200, ] <- c(-3, 5)
@@ -112,6 +117,7 @@ threshold_ensemble <- function(X){
 #' Y <- cbind.data.frame(y1, y2, y3, y4, y5, y6)
 #' ens <- average_ensemble(Y)
 #' ens
+#' }
 #'
 #' @export average_ensemble
 average_ensemble <- function(X){

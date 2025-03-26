@@ -1,42 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/outlierensembles.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/average_ensemble.html</loc>
-  </url>
-  <url>
-    <loc>/reference/greedy_ensemble.html</loc>
-  </url>
-  <url>
-    <loc>/reference/icwa_ensemble.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/irt_ensemble.html</loc>
-  </url>
-  <url>
-    <loc>/reference/max_ensemble.html</loc>
-  </url>
-  <url>
-    <loc>/reference/threshold_ensemble.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://sevvandi.github.io/outlierensembles/404.html</loc></url>
+<url><loc>https://sevvandi.github.io/outlierensembles/LICENSE.html</loc></url>
+<url><loc>https://sevvandi.github.io/outlierensembles/articles/index.html</loc></url>
+<url><loc>https://sevvandi.github.io/outlierensembles/articles/outlierensembles.html</loc></url>
+<url><loc>https://sevvandi.github.io/outlierensembles/authors.html</loc></url>
+<url><loc>https://sevvandi.github.io/outlierensembles/index.html</loc></url>
+<url><loc>https://sevvandi.github.io/outlierensembles/reference/average_ensemble.html</loc></url>
+<url><loc>https://sevvandi.github.io/outlierensembles/reference/greedy_ensemble.html</loc></url>
+<url><loc>https://sevvandi.github.io/outlierensembles/reference/icwa_ensemble.html</loc></url>
+<url><loc>https://sevvandi.github.io/outlierensembles/reference/index.html</loc></url>
+<url><loc>https://sevvandi.github.io/outlierensembles/reference/irt_ensemble.html</loc></url>
+<url><loc>https://sevvandi.github.io/outlierensembles/reference/max_ensemble.html</loc></url>
+<url><loc>https://sevvandi.github.io/outlierensembles/reference/threshold_ensemble.html</loc></url>
 </urlset>
+

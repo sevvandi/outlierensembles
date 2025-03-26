@@ -131,7 +131,8 @@ ggplot(df, aes(eruptions, waiting)) + geom_point(aes(color=Average)) +  scale_co
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
 
 <div id="ref-Aggarwal2015" class="csl-entry">
 

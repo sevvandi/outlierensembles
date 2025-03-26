@@ -12,6 +12,7 @@
 #'
 #' @examples
 #' set.seed(123)
+#' if (requireNamespace("dbscan", quietly = TRUE)){
 #' X <- data.frame(x1 = rnorm(200), x2 = rnorm(200))
 #' X[199, ] <- c(4, 4)
 #' X[200, ] <- c(-3, 5)
@@ -28,6 +29,7 @@
 #' Y <- cbind.data.frame(y1, y2, y3, y4, y5, y6)
 #' ens <- greedy_ensemble(Y, kk=5)
 #' ens$scores
+#' }
 #'
 #' @export greedy_ensemble
 #'
